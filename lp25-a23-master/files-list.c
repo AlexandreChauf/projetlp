@@ -39,6 +39,19 @@ files_list_entry_t *add_file_entry(files_list_t *list, char *file_path) {
  * @return 0 in case of success, -1 else
  */
 int add_entry_to_tail(files_list_t *list, files_list_entry_t *entry) {
+    if (list == NULL || entry == NULL) {
+        return -1;
+    }
+    if (list->tail == NULL) {
+        list->head = entry;
+        list->tail = entry;
+    } else {
+        list->tail->next = entry;
+        list->tail = entry;
+    }
+
+    // Indique que l'ajout a réussi
+    return 0;
 }
 
 /*!
